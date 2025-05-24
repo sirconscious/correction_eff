@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('Date');
             $table->string('total');
             $table->string('status')->default('pending');
-
             $table->timestamps();
         });
     }

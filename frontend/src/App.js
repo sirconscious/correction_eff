@@ -14,10 +14,7 @@ export default function App() {
             <Route index element={<CaculerPage />} />  
             <Route path='/list'  element={<Dossier/>}/>
             <Route path="/:id" element={<Verification />} /> 
-
         </Route>
-  
-
     </Routes>
     
     </BrowserRouter>

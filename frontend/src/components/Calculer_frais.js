@@ -28,7 +28,6 @@ export default function Calculer_frais() {
     console.error('Erreur lors de l envoi du dossier :', error.response?.data || error.message);
   }
 };
-
   const dispatch = useDispatch() 
   const ajouter = (frais)=>dispatch(AjouterAction(frais))
   const [montant, setMontant] = useState(0);
@@ -52,20 +51,20 @@ export default function Calculer_frais() {
       let horaire_notaire = 0;
   
         switch (true) {
-        case (montant < 300000):
+        case (m < 300000):
             horaire_notaire = 4000;
             break;
-        case (montant >= 300000 && montant < 1000000):
-            horaire_notaire = montant * 0.015;
+        case (m >= 300000 && m < 1000000):
+            horaire_notaire = m * 0.015;
             break;
-        case (montant >= 1000000 && montant < 5000000):
-            horaire_notaire = montant * 0.0125;
+        case (m >= 1000000 && m < 5000000):
+            horaire_notaire = m * 0.0125;
             break;
-        case (montant >= 5000000 && montant < 10000000):
-            horaire_notaire = montant * 0.0075;
+        case (m >= 5000000 && m < 10000000):
+            horaire_notaire = m * 0.0075;
             break;
-        case (montant >= 10000000):
-            horaire_notaire = montant * 0.005;
+        case (m >= 10000000):
+            horaire_notaire = m * 0.005;
             break;
         default:
             horaire_notaire = 0;

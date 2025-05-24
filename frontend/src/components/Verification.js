@@ -39,7 +39,7 @@ export default function Verification() {
             {dossier.status === 'pending' ?  (
                 <div className="card">
                     <p className="pending-message">Dossier en cours de traitement</p>
-                                        <button className="validate-btn" onClick={handleUpdate}>Valider</button>
+                    <button className="validate-btn" onClick={handleUpdate}>Valider</button>
 
                 </div> ):
             <ul className="dossier-info">
