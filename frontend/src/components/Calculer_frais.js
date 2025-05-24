@@ -1,11 +1,9 @@
 import React, { useState , useEffect} from 'react';
 import { useSelector ,useDispatch } from 'react-redux'; 
-import TableauFrais from './TableauFrais';
-import FraisSelector from '../redux/Selectores/FraisSelector'; 
-import { AjouterAction , ViderAction , InitialiserAction } from '../redux/Actions/FraisActions';  
+import { AjouterAction  } from '../redux/Actions/FraisActions';  
 import axios from 'axios'; 
 import "./CalculerFrais.css"
-import { postDossier , getall } from '../apis/endpoints';
+import { postDossier  } from '../apis/endpoints';
 export default function Calculer_frais() {   
    const storeDossier = async ({ id_dossier, Driots_en, Consevation, Date, total }) => {
   try {
@@ -31,29 +29,8 @@ export default function Calculer_frais() {
   }
 };
 
-    useEffect(() => {
-    const fetchAndInit = async () => {
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}${getall}`);
-            const fraisList = response.data.map((frais) => ({
-                id: frais.id_dossier,
-                Driots_en: frais.Driots_en,
-                Consevation: frais.Consevation,
-                Date: frais.Date,
-                total: frais.total
-            }));
-            dispatch(InitialiserAction(fraisList));
-        } catch (error) {
-            console.error("Erreur lors de la récupération des dossiers :", error.response?.data || error.message);
-        }
-    };
-
-    fetchAndInit();
-}, []);
-  const listeFrais = useSelector(FraisSelector);   
   const dispatch = useDispatch() 
   const ajouter = (frais)=>dispatch(AjouterAction(frais))
-  const vider = ()=>dispatch(ViderAction()) 
   const [montant, setMontant] = useState(0);
   const [frais, setFrais] = useState({
     droit_enregistrement: 0,
@@ -63,7 +40,6 @@ export default function Calculer_frais() {
     tva: 0,
     total: 0
   });
-  // console.log(listeFrais);
   const handleSubmit = (e) => {
     e.preventDefault();
     const m = parseFloat(montant);
@@ -140,9 +116,7 @@ export default function Calculer_frais() {
   <p><strong>Total : {frais.total.toFixed(2)} DH</strong></p>
 </div>
 
-      <TableauFrais listeFrais ={listeFrais} />  
-
-     { listeFrais.length > 0 && <button onClick={vider}>Vider</button>}
+   
     </div>
   );
 }
